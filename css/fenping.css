@@ -44,7 +44,7 @@ body{color:#222;-webkit-text-size-adjust:none;}
 
 		.section-btn{ width:14px;position:fixed;right:4%;top:50%;}
 
-		.section-btn li{ width:14px;height:14px;cursor:pointer;text-indent:-9999px;border-radius:50%;-webkit-border-radius:50%;margin-bottom:12px; background:#323436;text-align:center; color:#fff; onsor:pointer;}
+		.section-btn li{ width:14px;height:14px;cursor:pointer;text-indent:-9999px;border-radius:50%;-webkit-border-radius:50%;margin-bottom:12px; background:#323436;text-align:center; color:#fff; onsor:pointer;box-shadow: 2px 4px 10px rgba(0,0,0,.4);}
 
 		.section-btn li.on{ background:#fff}
 

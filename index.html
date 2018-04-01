@@ -75,6 +75,8 @@
 					</div>
 				</div>
 			</div>
+
+			<form id="infoForm" action="#"> 
 			<div class="section section-5" id="section-5">
 				<div class="title">
 					<div class="div_5">
@@ -82,8 +84,8 @@
 						<div class="div_5_tittle"></div>
 						<article>ETWeb帮你挖掘出自己潜在的气质,只为更好的展示自己.</article>
 						<div class="div_5_div">
-							<input type="text" name="fname"  placeholder="我们将以邮箱方式为您推送上线信息 请输入邮箱"/>
-							<div class="div_5_logo_btn">马上预约</div>
+							<input type="text" name="email" id="reserveText" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  placeholder="输入您的email,我们将以邮箱方式为您推送上线信息 请输入邮箱"/>
+							<div class="div_5_logo_btn"   id = "reserve">马上预约</div>
 						</div>
 						<article class="div_5_logo_btn_new" style="padding-top:100px;">注意事项 :程序正在开发阶段，为了即时获取第一动态请先预约。</article>
 						<div class="div_5_footer">
@@ -94,6 +96,8 @@
 					</div>
 				</div>
 			</div>
+
+			</form>
 		</section>
 
 		<ul class="section-btn">
@@ -223,6 +227,43 @@
 
 	});
 
+
+	$(function(){
+		$("#reserve").click(function(){
+			var email = $("#reserveText").val();
+			var reg = '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$';
+			if(email.match(reg)){
+				var url = "http://dev.etweb.cn/etuser/sendEmail";
+
+
+				var param = $("#infoForm").serialize();
+				//var url = "${request.contextPath}/user/addUser";
+				
+				$.ajax({
+                    type: "POST",
+                    url: url,
+                    data: param,
+                    dataType: "jsonp",
+                    jsonp: "callbackparam",
+                    jsonpCallback:"weather_callback",
+                    success: function(){//发送请求给后台后 会进error, 
+                    	alert('邮件已经发送到你的邮箱,请注意查收');
+                    },
+                     error: function(XMLHttpRequest, textStatus, errorThrown) {
+                          // alert(XMLHttpRequest.status);
+                          // alert(XMLHttpRequest.readyState);
+                          // alert(textStatus);
+                          // alert(XMLHttpRequest.responseText);
+                          alert('邮件已经发送到你的邮箱,请注意查收');
+                      },
+                }); 
+
+
+			}else{
+				alert('邮件输入错误');
+			}
+		});
+	});
 </script>
 
 		
